@@ -1,0 +1,16 @@
+name: "Build all images"
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.28.3/install
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run check
+        run: nix flake check
+      - name: Size summary
+        run: nix run .#docker-size-summary
