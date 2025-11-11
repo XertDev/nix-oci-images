@@ -16,9 +16,7 @@
 
   outputs = inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.git-hooks-nix.flakeModule
-      ];
+      imports = [ inputs.git-hooks-nix.flakeModule ];
 
       systems = [ "x86_64-linux" ];
       perSystem = { system, config, lib, pkgs, ... }: {
@@ -34,8 +32,7 @@
 
         packages = import ./images { inherit pkgs; };
 
-        apps = let
-          imageNames = builtins.attrNames self.packages."${system}";
+        apps = let imageNames = builtins.attrNames self.packages."${system}";
         in {
           docker-size-summary = {
             type = "app";
