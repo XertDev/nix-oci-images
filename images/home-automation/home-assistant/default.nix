@@ -169,6 +169,9 @@ let
           cp  ${configFile} "${CONFIG_DIR}/configuration.yaml"
 
           chmod u+w "${CONFIG_DIR}/configuration.yaml"
+          if [[ ! -e "${MANUAL_CONFIG}" ]]; then
+            touch "${MANUAL_CONFIG}"
+          fi
           cat "${MANUAL_CONFIG}" >> "${CONFIG_DIR}/configuration.yaml"
           chmod u-w "${CONFIG_DIR}/configuration.yaml"
 
