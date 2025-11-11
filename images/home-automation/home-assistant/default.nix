@@ -225,6 +225,7 @@ let
       fakeRootCommands = ''
         mkdir -p tmp
         chown -R ${toString DEFAULT_UID}:${toString DEFAULT_GID} ./tmp
+        chmod o+rwx tmp
 
         mkdir -p "${CONFIG_DIR}"
         touch  "${MANUAL_CONFIG}"
