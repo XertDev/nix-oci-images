@@ -172,7 +172,8 @@ let
           if [[ ! -e "${MANUAL_CONFIG}" ]]; then
             touch "${MANUAL_CONFIG}"
           fi
-          cat "${MANUAL_CONFIG}" >> "${CONFIG_DIR}/configuration.yaml"
+          ${pkgs.yq-go}/bin/yq '. *= load("${MANUAL_CONFIG}")' "${CONFIG_DIR}/configuration.yaml" > "${CONFIG_DIR}/merged.yaml"
+          cp "${CONFIG_DIR}/merged.yaml" "${CONFIG_DIR}/configuration.yaml"
           chmod u-w "${CONFIG_DIR}/configuration.yaml"
 
           #customLovelaceModules
