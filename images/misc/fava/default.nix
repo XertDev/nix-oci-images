@@ -31,7 +31,7 @@ let
           option "inferred_tolerance_default" "*:0.00000001"
           option "inferred_tolerance_default" "USD:0.003"
 
-          option "inferred_tolerance_multiplier" "1.2"
+          option "tolerance_multiplier" "1.2"
         '';
       };
 
